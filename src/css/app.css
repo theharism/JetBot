@@ -1,0 +1,123 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+
+.send-off-screen {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.demo-oracle-icon {
+  width:137px;
+  height:18px
+}
+
+/* .round-input {
+  --oj-text-field-border-radius: 25px;
+  --oj-text-field-border-color: white;
+  --oj-text-field-text-color: black;
+  --oj-text-field-border-color-focus: white;
+  --oj-text-field-box-shadow-focus: black;
+  --oj-text-field-height: 50px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /
+} */
+
+.round-input {
+  --oj-text-field-border-radius: 25px;
+  --oj-text-field-border-color: white;
+  --oj-text-field-text-color: black;
+  --oj-text-field-border-color-focus: white;
+  --oj-text-field-box-shadow-focus: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow on focus */
+  --oj-text-field-height: 50px;
+  width: 85%;
+}
+
+#messages::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for WebKit browsers (Chrome, Safari) */
+}
+
+#messages {
+  scrollbar-width: none; /* Hides the scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hides the scrollbar in IE and Edge */
+}
+
+.messageInputContainer{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 5%;
+  left:0%;
+  right:0%;
+}
+
+
+
+.messageContainer {
+  display: inline-block; 
+  max-width: 60vw; 
+  word-wrap: break-word; 
+}
+
+.messagesContainer{
+  width: 90%;
+  align-self: center;
+}
+
+.errorMessage{
+  position: absolute;
+left:0%;
+right:0%;
+  z-index: 99;
+}
+
+
+.round-input::part(text-field) {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
+}
+
+
+/* .dark-bg{
+  --oj-text-field-bg-color:lightgray;
+  --oj-text-field-border-color-focus:white;
+} */
+
+/* .demo-oracle-icon:before {
+  content:url("images/oracle_logo.svg")
+} */
+
+html:not([dir="rtl"]) .demo-oracle-icon {
+  padding-right:4px
+}
+
+html[dir="rtl"] .demo-oracle-icon {
+  padding-left:4px
+}
+
+.demo-oracle-icon:before {
+  display:inline
+}
+
+.demo-appheader-avatar {
+  width:24px;
+  height:24px
+}
+
+.demo-appheader-avatar:before {
+  content:url("images/avatar_24px.png")
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .demo-appheader-avatar:before {
+      content:url("images/avatar_24px_2x.png");
+      -webkit-transform:translate(-25%, -25%) scale(0.5);
+      transform:translate(-25%, -25%) scale(0.5)
+  }
+}

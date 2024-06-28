@@ -1,0 +1,85 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<script type="module" src="https://md-block.verou.me/md-block.js"></script>
+
+<div class="oj-hybrid-padding oj-flex oj-flex-init oj-sm-flex-direction-column">
+  <oj-bind-if test="[[showErrorMessage()]]">
+    <div class="errorMessage">
+      <oj-message-banner
+        data="[[errorMessages]]"
+        type="page"
+        on-oj-close="[[closeMessage]]"
+      ></oj-message-banner>
+    </div>
+  </oj-bind-if>
+
+  <!-- Messages Container -->
+  <div class="oj-flex-item messagesContainer">
+    <oj-list-view
+      id="messages"
+      data="[[messagesProvider]]"
+      class="oj-flex"
+      scroll-policy="loadMoreOnScroll"
+      scroll-policy-options.fetch-size="5"
+      style="max-height: 70vh; overflow-y: auto"
+    >
+      <template slot="itemTemplate" data-oj-as="item">
+        <oj-bind-if test="[[item.data.sender !== 'user']]">
+          <div class="oj-flex oj-sm-justify-content-flex-start">
+            <div class="oj-panel oj-bg-info-20 messageContainer">
+              <oj-bind-if test="[[item.data.message === '...']]">
+                <oj-progress-circle size="sm" value="-1"></oj-progress-circle>
+              </oj-bind-if>
+              <oj-bind-if test="[[item.data.message !== '...']]">
+                <md-block>
+                  <oj-bind-text value="[[item.data.message]]"></oj-bind-text>
+                </md-block>
+              </oj-bind-if>
+            </div>
+          </div>
+        </oj-bind-if>
+
+        <oj-bind-if test="[[item.data.sender === 'user']]">
+          <div class="oj-flex oj-sm-justify-content-flex-end">
+            <div class="oj-panel oj-bg-info-20 messageContainer">
+              <oj-bind-text value="[[item.data.message]]"></oj-bind-text>
+            </div>
+          </div>
+        </oj-bind-if>
+      </template>
+      <template slot="noData">
+        <div></div>
+      </template>
+    </oj-list-view>
+  </div>
+
+  <!-- Message Input -->
+  <div class="oj-flex-item messageInputContainer">
+    <oj-input-text
+      id="messageInput"
+      aria-label="Message JetBot"
+      placeholder="Message JetBot"
+      class="round-input dark-bg"
+      value="{{inputMessage}}"
+      autofocus="true"
+    >
+      <oj-button
+        slot="end"
+        display="icons"
+        chroming="borderless"
+        on-oj-action="[[sendMessage]]"
+        disabled="[[loading]]"
+      >
+        <span
+          slot="endIcon"
+          class="oj-ux-ico-send"
+          role="img"
+          title="send"
+        ></span>
+      </oj-button>
+    </oj-input-text>
+  </div>
+</div>
